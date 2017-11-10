@@ -1,0 +1,8 @@
+#### This protocol uses multiple steps equilbration ####
+### modify protein residue info in the min.in and md.in files
+bash prepare_equil.sh ALL_CASES.txt ### the prepare_equil.sh file needs to change a little bit. 
+### run equilibration on BlueWater
+bash run_equil.sh ALL_CASES.txt
+### Or run on Laufer Cshluster
+bash run_equil.sh ALL_CASES.txt
+

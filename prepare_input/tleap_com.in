@@ -1,0 +1,15 @@
+source leaprc.ff14SB
+source leaprc.gaff
+source leaprc.water.tip3p
+LIG=loadmol2 lig_ID.mol2
+
+loadoff lig_ID.lib
+loadamberparams lig_ID.frcmod
+
+LIG=loadpdb lig_ID.pdb
+REC=loadpdb rec.pdb
+com=combine{REC LIG}
+check com
+charge com
+charge LIG
+savepdb com lig_com_ID.pdb

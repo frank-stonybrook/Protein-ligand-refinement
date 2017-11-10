@@ -1,0 +1,13 @@
+minimize
+ &cntrl
+  imin=1,
+  maxcyc=1000,
+  ntmin=2, ! first 2 steps using deepest descent method
+  ntb=1,   ! constant volume
+  ntr=1,   !
+  ntc=1,   ! shake algorithm is turn off
+  ntx=1,   ! read coord not velocities from previous step.
+  cut=8.0, ! non-bonded intercation cut off
+  restraintmask=':1-last_water!@H=', ! heavy atoms of protein and ligans are restrainted
+  restraint_wt=0.1, ! restraint constant
+ /

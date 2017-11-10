@@ -1,0 +1,14 @@
+### clean the rec file
+bash prepare_rec.sh ALL_CASES.txt
+#### prepare complex 
+bash prepare_com.sh ALL_CASES.txt
+#### antechamber compute charge
+## extract ligand charge
+bash extract_charge.sh ALL_CASES.txt #(output ligand_charge.txt complex_charge.txt)
+## sqm compute ligand partial charge and generate mol2 file
+bash compute_charge.sh ligand_charge.txt
+### generate top and inpcrd file based on complex charge
+bash prepare_solvate.sh complex_charge.txt
+
+###################### At current step, preparation should be done! #######################
+

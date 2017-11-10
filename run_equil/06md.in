@@ -1,0 +1,72 @@
+simple generalized Born minimization script
+&cntrl
+ imin = 0, ! turn-off minimization
+ irest = 0,! using previous run information to restart simulation
+ ntx = 1,  ! read only coordinate 
+ nstlim=100000, dt=0.001, ! 1fs, total 100ps  
+ cut=8.0, ! defalut value for explicit water
+ ntc = 2,   ! all bonds involving hydrogen are constrained
+ ntf = 1,    ! all types of forces are evaluated
+ ntt=1,    ! Berendsen T coupling method
+ ntb=2,    ! constant p periodic boundary conditin
+ ntr = 1,   ! use position restraints
+ ntp=1,    ! constant p
+ taup = 1.0,! Pressure relaxation time 
+ tempi = 298.15, ! initial T
+ temp0 = 298.15,! Final T
+ tautp = 1.0,! Temperature coupling time
+ ntpr = 1000, ! to output file
+ ntwx = 1000, ! to trajectory file
+ ntwr = 1000, ! to restart file
+ iwrap=1
+ nscm=100,     ! remove COM every 100 steps
+/
+keep protein heavy atoms fixed
+50.
+FIND
+CA * * *
+CB * * *
+CD1 * * *
+CD2 * * *
+CE * * *
+CE1 * * *
+CE2 * * *
+CE3 * * *
+C * * *
+N * * *
+SEARCH
+RES 1 protein_residue
+END
+keep protein fixed continue
+50.
+FIND
+O * * *
+OE1 * * *
+OE2 * * *
+CG * * *
+CG1 * * *
+CG2 * * *
+NE * * *
+NE1 * * *
+NE2 * * *
+SEARCH
+RES 1 protein_residue
+END
+keep crystal water  restrainted
+50.
+FIND
+O * * WAT
+S * * SO4
+O * * SO4
+SEARCH
+RES 1 last_water
+END
+keep ligand all slightly restrainted
+5.0
+FIND
+* * * LIG
+SEARCH
+RES ligand_residue ligand_residue
+END
+END
+

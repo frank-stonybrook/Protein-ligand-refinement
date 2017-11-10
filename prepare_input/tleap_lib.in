@@ -1,0 +1,14 @@
+source leaprc.ff14SB
+source leaprc.gaff
+LIG=loadmol2 lig_ID.mol2
+loadamberparams lig_ID.frcmod
+check LIG
+charge LIG
+saveoff LIG lig_ID.lib
+
+##loadoff
+##loadamberparams
+#LIG=loadpdb 1.lig.pdb
+#REC=loadpdb 1.rec.pdb
+#com=combine{REC LIG}
+#savepdb com 1_com.pdb

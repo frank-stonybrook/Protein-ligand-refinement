@@ -1,0 +1,51 @@
+simple generalized Born minimization script
+&cntrl
+ imin = 0, ! turn-off minimization
+ irest = 1, ! using previous run information to restart simulation
+ ntx = 5,  ! read both coordinate and velocity
+ nstlim=50000000, dt=0.002, ! 1fs, total 50ps  
+ cut=8.0, ! defalut value for explicit water
+ ntc = 2,   ! all bonds involving hydrogen are constrained
+ ntf = 1,    ! all types of forces are evaluated
+ ntt=1,    ! Berendsen T coupling method
+ ntb=2,    ! constant p periodic boundary conditin
+ ntr = 1,   ! use position restraints
+ ntp=1,    ! constant p
+ taup = 1.0,! Pressure relaxation time 
+ tempi = 298.15, ! initial T
+ temp0 = 298.15,! Final T
+ tautp = 1.0,! Temperature coupling time
+ ntpr = 25000, ! to output file
+ ntwx = 25000, ! to trajectory file
+ ntwr = 25000, ! to restart file
+ iwrap=1
+ nscm=100,     ! remove COM every 100 steps
+/
+keep protein and ligand heavy atoms fixed
+50.
+FIND
+CA * * *
+C  * * *
+O  * * *
+N  * * *
+SEARCH
+RES 1 protein_residue
+END
+keep crystal water  restrainted
+50.
+FIND
+O * * WAT
+S * * SO4
+O * * SO4
+SEARCH
+RES 1 last_water
+END
+keep ligand all slightly restrainted
+0.5
+FIND
+* * * LIG
+SEARCH
+RES ligand_residue ligand_residue
+END
+END
+

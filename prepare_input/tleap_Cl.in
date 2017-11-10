@@ -1,0 +1,14 @@
+source leaprc.water.tip3p
+source leaprc.ff14SB
+source leaprc.gaff
+
+loadoff lig_ID.lib
+loadamberparams lig_ID.frcmod
+
+com = loadpdb lig_com_ID.pdb
+solvatebox com TIP3PBOX 5
+
+addIons com Cl- 0
+charge com
+saveamberparm com lig_ID.prmtop lig_ID.inpcrd
+quit
